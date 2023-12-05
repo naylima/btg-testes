@@ -1,0 +1,17 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7.25
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=resistence
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+  rabbitmq_data:

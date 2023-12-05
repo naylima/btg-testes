@@ -1,0 +1,17 @@
+
+## Pré-requisitos
+
+Necessário ter os pacotes abaixo:
+
+- [Docker](https://store.docker.com/editions/community/docker-ce-desktop-windows)
+- [.NET Core 5.0 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
+- [Visual Studio Code](https://go.microsoft.com/fwlink/?Linkid=852157) ou similar
+- [MySql WorkBench](https://www.mysql.com/products/workbench/) ou similar
+
+### Adicionando MySql
+
+execute o comando para iniciar um mysql:
+
+docker-compose up
+
+dotnet ef database update

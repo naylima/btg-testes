@@ -2,7 +2,6 @@
 {
     public class Funcionario
     {
-        // THEORY INLINE PROF
         public string Nome { get; set; }
         public decimal Salario { get; set; }
         public string NivelProfissional { get; private set; }
@@ -29,6 +28,5 @@
                 return "Senior";
             }
         }
-
     }
 }

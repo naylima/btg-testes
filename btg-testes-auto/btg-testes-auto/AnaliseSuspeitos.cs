@@ -2,7 +2,6 @@
 {
     public class AnaliseSuspeitos
     {
-        // THEORY INLINEDATA ALUNAS
         public string ExecutarQuestionarioSuspeito(bool telefonouVitima, bool esteveNoLocal, bool moraPerto, bool devedor, bool trabalhaComVitima)
         {
             int respostasPositivas = 0;

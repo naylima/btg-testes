@@ -1,0 +1,94 @@
+using System.Collections.Generic;
+using Moq;
+using src.Web.Api.Core.Interface.Repository;
+using src.Web.Api.Core.Interface.UseCase;
+using src.Web.Api.Core.UseCase;
+using src.Web.Api.Model;
+using Xunit;
+using static src.Web.Api.Model.TradeResourcesRequest;
+
+namespace Tests.Web.Api.Core.TradeResoursesUseCaseTest
+{
+    public class GetQuantityResourcesTest
+    {
+        private TradeResoursesUseCase _tradeResoursesUseCase { get; set; }
+        private Mock<IRebelRepository> _rebelRepository;
+        private Mock<IInventoryRepository> _inventoryRepository;
+
+        private void Initialize()
+        {
+            _rebelRepository = new Mock<IRebelRepository>();
+            _inventoryRepository = new Mock<IInventoryRepository>();
+
+            _tradeResoursesUseCase = new TradeResoursesUseCase(_rebelRepository.Object, _inventoryRepository.Object);
+        }
+
+        [Fact]
+        public void GetQuantityResources_1Point_ReturnExpectedValue()
+        {
+            Initialize();
+
+            long response = _tradeResoursesUseCase.GetQuantityResources(new RebelAndResouces()
+            {
+                IdRebel = 1,
+                Inventories = new List<InventoryRequest>()
+                {
+                    new InventoryRequest()
+                    {
+                        Resource = "Comida",
+                        Quantity = 10
+                    }
+                }
+            });
+
+            Assert.Equal(10, response);
+        }
+
+        [Fact]
+        public void GetQuantityResources_3Point_ReturnExpectedValue()
+        {
+            Initialize();
+
+            long response = _tradeResoursesUseCase.GetQuantityResources(new RebelAndResouces()
+            {
+                IdRebel = 1,
+                Inventories = new List<InventoryRequest>()
+                {
+                    new InventoryRequest()
+                    {
+                        Resource = "Municao",
+                        Quantity = 5
+                    }
+                }
+            });
+
+            Assert.Equal(15, response);
+        }
+
+        [Fact]
+        public void GetQuantityResources_ListInventory_ReturnExpectedValue()
+        {
+            Initialize();
+
+            long response = _tradeResoursesUseCase.GetQuantityResources(new RebelAndResouces()
+            {
+                IdRebel = 1,
+                Inventories = new List<InventoryRequest>()
+                {
+                    new InventoryRequest()
+                    {
+                        Resource = "Municao",
+                        Quantity = 5
+                    },
+                    new InventoryRequest()
+                    {
+                        Resource = "Comida",
+                        Quantity = 10
+                    }
+                }
+            });
+
+            Assert.Equal(25, response);
+        }
+    }
+}
