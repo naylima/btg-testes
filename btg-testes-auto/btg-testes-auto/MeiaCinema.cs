@@ -2,6 +2,7 @@
 {
     public class MeiaCinema
     {
+        // sugestão Theory/InlineData
         /*
              * O Cinema Ada é uma franquia nacional e disponibiliza valor de meia entrada nas seguintes condições:
             Estudante;

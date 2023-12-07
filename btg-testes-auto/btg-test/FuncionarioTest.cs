@@ -1,4 +1,5 @@
 ﻿using btg_testes_auto;
+using FluentAssertions;
 
 namespace btg_test
 {
@@ -95,7 +96,7 @@ namespace btg_test
 
             // Assert
             Assert.Equal("Senior", funcionario.NivelProfissional);
-
+            funcionario.NivelProfissional.Should().Be("Senior");
         }
 
         

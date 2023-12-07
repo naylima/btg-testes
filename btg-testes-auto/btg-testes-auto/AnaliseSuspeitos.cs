@@ -1,5 +1,6 @@
 ﻿namespace btg_testes_auto
 {
+    // sugestão Theory/InlineData
     public class AnaliseSuspeitos
     {
         public string ExecutarQuestionarioSuspeito(bool telefonouVitima, bool esteveNoLocal, bool moraPerto, bool devedor, bool trabalhaComVitima)
