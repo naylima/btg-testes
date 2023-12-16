@@ -16,7 +16,7 @@ namespace btg_test.OrderTest
         }
 
         [Fact]
-        public void ProcessOrder_QuantityLowerThanStockUpdateSucess_ReturnTrue()
+        public void ProcessOrder_QuantityEqualToStock_ReturnTrue()
         {
             // Arrange
             PurchaseOrder purchaseOrder = new()
@@ -25,7 +25,33 @@ namespace btg_test.OrderTest
                 Quantity = 3
             };
 
-            _mockInventoryService.GetStockQuantity("2")
+            _mockInventoryService.GetStockQuantity(Arg.Any<string>())
+                .Returns(3);
+
+            _mockInventoryService.UpdateStock(Arg.Any<string>(), Arg.Any<int>())
+                .Returns(true);
+
+            // Act
+            bool result = _service.ProcessOrder(purchaseOrder);
+
+            // Assert
+            result.Should().BeTrue();
+            _mockInventoryService.Received().GetStockQuantity(Arg.Any<string>());
+            _mockInventoryService.Received(1).UpdateStock(Arg.Any<string>(), Arg.Any<int>());
+        }
+
+
+        [Fact]
+        public void ProcessOrder_QuantityLowerThanStockUpdateSuccess_ReturnTrue()
+        {
+            // Arrange
+            PurchaseOrder purchaseOrder = new()
+            {
+                ProductId = "1",
+                Quantity = 3
+            };
+
+            _mockInventoryService.GetStockQuantity("1")
                 .Returns(5);
 
             _mockInventoryService.UpdateStock("1", -3)
@@ -36,9 +62,10 @@ namespace btg_test.OrderTest
 
             // Assert
             result.Should().BeTrue();
-            _mockInventoryService.Received().GetStockQuantity("1");
+            _mockInventoryService.Received(1).GetStockQuantity("1");
             _mockInventoryService.Received(1).UpdateStock("1", -3);
         }
+
 
         [Fact]
         public void ProcessOrder_QuantityLowerThanStockUpdateFail_ReturnFalse()

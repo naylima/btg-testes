@@ -100,8 +100,8 @@ namespace btg_test
 
             Action resultado2 = () => calculadora.Dividir();
             
-            Assert.Throws<Exception>(resultado2);
-  
+            var exception = Assert.Throws<Exception>(resultado2);
+            Assert.Equal("Mensagem exception", exception.Message);
         }
 
         /*

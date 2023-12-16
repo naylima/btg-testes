@@ -33,6 +33,23 @@ public class ShippingServiceTest
     }
 
     [Fact]
+    public void CalculateShippingCost_ExpressWith200Km_ShouldNotApplyDiscount()
+    {
+        // Arrange
+        const double distance = 200;
+        const DeliveryType deliveryType = DeliveryType.Express;
+
+        _mockDeliveryCostCalculator.CalculateCost(distance, deliveryType).Returns(35);
+
+        // Act
+        var result = _sut.CalculateShippingCost(distance, deliveryType);
+
+        // Assert
+        result.Should().Be(35);
+        _mockDeliveryCostCalculator.Received(1).CalculateCost(distance, deliveryType);
+    }
+
+    [Fact]
     public void CalculateShippingCost_ExpressAbove200Km_ShouldApply50PercentDiscount()
     {
         // Arrange
@@ -54,6 +71,23 @@ public class ShippingServiceTest
     {
         // Arrange
         const double distance = 150;
+        const DeliveryType deliveryType = DeliveryType.Ordinary;
+
+        _mockDeliveryCostCalculator.CalculateCost(distance, deliveryType).Returns(20);
+
+        // Act
+        var result = _sut.CalculateShippingCost(distance, deliveryType);
+
+        // Assert
+        result.Should().Be(20);
+        _mockDeliveryCostCalculator.Received(1).CalculateCost(distance, deliveryType);
+    }
+
+    [Fact]
+    public void CalculateShippingCost_OrdinaryWith200Km_ShouldNotApplyDiscount()
+    {
+        // Arrange
+        const double distance = 200;
         const DeliveryType deliveryType = DeliveryType.Ordinary;
 
         _mockDeliveryCostCalculator.CalculateCost(distance, deliveryType).Returns(20);

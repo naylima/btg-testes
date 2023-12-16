@@ -13,8 +13,7 @@ public class MotoristaTest
         List<Pessoa> pessoas = new List<Pessoa>
         {
             new Pessoa { Nome = "João", Idade = 20, PossuiHabilitaçãoB = true },
-            new Pessoa { Nome = "Maria", Idade = 25, PossuiHabilitaçãoB = true },
-            new Pessoa { Nome = "Carlos", Idade = 17, PossuiHabilitaçãoB = true },
+            new Pessoa { Nome = "Maria", Idade = 18, PossuiHabilitaçãoB = true },
             new Pessoa { Nome = "Ana", Idade = 22, PossuiHabilitaçãoB = false }
         };
 
@@ -42,6 +41,7 @@ public class MotoristaTest
         Motorista motorista = new Motorista();
 
         // Act & Assert
-        Assert.Throws<Exception>(() => motorista.EncontrarMotoristas(pessoas));
+        var exception = Assert.Throws<Exception>(() => motorista.EncontrarMotoristas(pessoas));
+        Assert.Equal("A viagem não será realizada devido falta de motoristas!", exception.Message);
     }
 }
