@@ -1,10 +1,10 @@
 ﻿namespace btg_testes_auto.NotificationMessage
 {
-    public class NotificationService
+    public class NotificationMessageService
     {
         private readonly IMessageService _messageService;
 
-        public NotificationService(IMessageService messageService)
+        public NotificationMessageService(IMessageService messageService)
         {
             _messageService = messageService;
         }

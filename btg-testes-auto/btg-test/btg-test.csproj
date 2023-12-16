@@ -28,4 +28,20 @@
     <ProjectReference Include="..\btg-testes-auto\btg-testes-auto.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="CartDiscountTest\" />
+    <None Remove="ClientDicountTest\" />
+    <None Remove="NotificationEmailTest\" />
+    <None Remove="NotificationMessageTest\" />
+    <None Remove="PlaylistSongsTest\" />
+    <None Remove="ShippingCostTest\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CartDiscountTest\" />
+    <Folder Include="ClientDicountTest\" />
+    <Folder Include="NotificationEmailTest\" />
+    <Folder Include="NotificationMessageTest\" />
+    <Folder Include="PlaylistSongsTest\" />
+    <Folder Include="ShippingCostTest\" />
+  </ItemGroup>
 </Project>
